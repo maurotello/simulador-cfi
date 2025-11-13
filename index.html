@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Cuotas CFI – Sistema alemán</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #004aad;
+      --primary-dark: #003a87;
+      --bg-dark: #151827;
+      --bg-light: #1e2139;
+      --bg-card: #252845;
+      --text-primary: #ffffff;
+      --text-secondary: #b8bcc8;
+      --accent-color: #4e7cff;
+      --success-color: #28a745;
+      --error-color: #dc3545;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--bg-light);
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .logo i {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .page-title {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .page-title h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .page-title p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Card Styles */
+    .card {
+      background-color: var(--bg-card);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .card-header i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .help {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    /* Form Styles */
+    .form-row {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-row-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .form-row-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(78, 124, 255, 0.2);
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 1rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: var(--text-primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 74, 173, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--text-secondary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--text-secondary);
+      color: var(--bg-dark);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Table Styles */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--bg-card);
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      text-align: right;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    th {
+      background-color: var(--bg-light);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    tr:hover {
+      background-color: rgba(78, 124, 255, 0.1);
+    }
+
+    tfoot td {
+      font-weight: 700;
+      background-color: var(--bg-light);
+    }
+
+    /* Summary Styles */
+    .summary {
+      background-color: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1.5rem;
+    }
+
+    .summary h3 {
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-item span:first-child {
+      color: var(--text-secondary);
+    }
+
+    .summary-item span:last-child {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Notes Styles */
+    .note {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      border-left: 3px solid var(--primary-color);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .note i {
+      margin-top: 0.2rem;
+    }
+
+    /* Error Message */
+    .error {
+      color: var(--error-color);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: rgba(220, 53, 69, 0.1);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .error i {
+      font-size: 1.2rem;
+    }
+
+    /* Status Message */
+    .status-message {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-success {
+      color: var(--success-color);
+      background-color: rgba(40, 167, 69, 0.1);
+    }
+
+    .status-info {
+      color: var(--accent-color);
+      background-color: rgba(78, 124, 255, 0.1);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--bg-light);
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-column ul li a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary-color);
+      color: var(--text-primary);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .form-row-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-light);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .page-title h1 {
+        font-size: 2rem;
+      }
+
+      .form-row-3,
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .table-container {
+        font-size: 0.9rem;
+      }
+
+      th,
+      td {
+        padding: 0.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-title h1 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+
+    @media print {
+      body {
+        background-color: #fff;
+        color: #000;
+      }
+
+      header,
+      footer,
+      .btn,
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      .card {
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #fff;
+        color: #000;
+      }
+
+      .table-container {
+        box-shadow: none;
+      }
+
+      table {
+        background-color: #fff;
+        color: #000;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      tfoot td {
+        background-color: #f2f2f2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo">
+        <i class="fas fa-chart-line"></i>
+        <span>CFI</span>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Créditos</a></li>
+        <li><a href="#">Programas</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-title">
+      <h1>Simulador de Cuotas CFI – Sistema alemán</h1>
+      <p>Uso interno UEP. Resultados orientativos, no constituyen oferta ni instrumento oficial.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-calculator"></i>
+        <h2 class="card-title">Configuración del préstamo</h2>
+      </div>
+
+      <!-- Primera fila: 3 campos juntos -->
+      <div class="form-row form-row-3">
+        <div class="form-group">
+          <label for="linea">Línea de crédito</label>
+          <select id="linea">
+            <option value="competitividad">Competitividad PyME</option>
+            <option value="verde">Financiamiento Verde</option>
+            <option value="mujeres">Mujeres</option>
+            <option value="triple">Triple Impacto</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="monto">Monto a financiar (en pesos)</label>
+          <input id="monto" type="number" min="0" step="1000">
+          <div class="help">
+            Competitividad PyME: $4.000.000 a $100.000.000<br>
+            Verde / Mujeres: hasta $200.000.000<br>
+            Triple Impacto: hasta $300.000.000
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="plazo">Plazo total (meses)</label>
+          <input id="plazo" type="number" min="1" max="48">
+          <div class="help">Máximo 48 meses.</div>
+        </div>
+      </div>
+
+      <!-- Segunda fila: 2 campos juntos -->
+      <div class="form-row form-row-2">
+        <div class="form-group">
+          <label for="frecuencia">Frecuencia de amortización</label>
+          <select id="frecuencia">
+            <option value="mensual">Mensual</option>
+          </select>
+          <div class="help">Por ahora solo mensual.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="gracia">Período de gracia (meses)</label>
+          <input id="gracia" type="number" min="0" max="6">
+          <div class="help">Máx. 6 meses. Debe ser menor al plazo total.</div>
+        </div>
+      </div>
+
+      <div class="form-row form-row-2">
+        <div class="form-group">
+          <label for="tamarTna">TAMAR + 2 p.p. (TNA anual, %)</label>
+          <input id="tamarTna" type="number" min="0" step="0.01" readonly>
+          <div class="help">
+            Se carga automáticamente desde BCRA. Si falla, podés editarla manualmente.
+          </div>
+          <div id="tamarEstado" class="status-message status-info" style="margin-top:4px;"></div>
+        </div>
+        <div class="form-group">
+          <label for="tamarFecha">Fecha TAMAR (dd/mm/aaaa)</label>
+          <input id="tamarFecha" type="text" placeholder="ej: 23/10/2025" readonly>
+          <div class="help">Fecha informativa según BCRA.</div>
+          <button id="btnActualizarTamar" class="btn btn-secondary" type="button" style="margin-top:8px;">
+            <i class="fas fa-sync-alt"></i> Actualizar TAMAR desde BCRA
+          </button>
+        </div>
+      </div>
+
+      <div class="status-message status-info" id="tasaCfiEstado" style="margin-top:6px;">
+        <i class="fas fa-info-circle"></i>
+        Tasa fija del primer tramo: se tomará automáticamente desde el sitio oficial del CFI según la línea
+        seleccionada.
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button id="btnSimular" class="btn btn-primary">
+          <i class="fas fa-chart-bar"></i> Calcular cuadro de cuotas
+        </button>
+        <button id="btnExportar" class="btn btn-secondary" disabled>
+          <i class="fas fa-file-csv"></i> Exportar a CSV (Excel)
+        </button>
+        <button id="btnImprimir" class="btn btn-secondary" disabled>
+          <i class="fas fa-print"></i> Imprimir / PDF
+        </button>
+      </div>
+
+      <div id="error" class="error" style="display: none;">
+        <i class="fas fa-exclamation-circle"></i>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="card" id="resultCard" style="display:none;">
+      <div class="card-header">
+        <i class="fas fa-table"></i>
+        <h2 class="card-title">Cuadro de cuotas</h2>
+      </div>
+
+      <div class="summary" id="resumen"></div>
+
+      <div class="table-container" id="tablaWrapper"></div>
+
+      <div class="note" id="notaTasaCFI">
+        <i class="fas fa-info-circle"></i>
+        <span></span>
+      </div>
+      <div class="note" id="notaTamar">
+        <i class="fas fa-info-circle"></i>
+        <span></span>
+      </div>
+      <div class="note" id="notaLegal">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span></span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>CFI</h3>
+        <p>Fomentamos el desarrollo económico y social de Argentina a través de financiamiento y asistencia técnica.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Enlaces rápidos</h3>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Programas</a></li>
+          <li><a href="#">Noticias</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#">Créditos</a></li>
+          <li><a href="#">Asistencia Técnica</a></li>
+          <li><a href="#">Capacitación</a></li>
+          <li><a href="#">Observatorio</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Azopardo 750, CABA</li>
+          <li><i class="fas fa-phone"></i> +54 11 4317 0700</li>
+          <li><i class="fas fa-envelope"></i> info@cfi.org.ar</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 CFI - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    // URL de Principales variables del BCRA (TAMAR)
+    const BCRA_TAMAR_URL = "https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp";
+
+    // URLs de CFI para cada línea (para leer la tasa)
+    const cfiRatePages = {
+      competitividad: "https://cfi.org.ar/competitividad_pyme",
+      verde: "https://cfi.org.ar/financiamiento_verde",
+      mujeres: "https://cfi.org.ar/desarrollo_productivo_financiero_mujeres",
+      triple: "https://cfi.org.ar/programas_abordaje_integral"
+    };
+
+    // Config por línea (rangos y tramos). tnaFijaTramo1 se puede actualizar con la tasa del CFI.
+    const lineConfigs = {
+      competitividad: {
+        nombre: "Competitividad PyME",
+        min: 4000000,
+        max: 100000000,
+        tramoVariableDesdeMes: 13,
+        tnaFijaTramo1Default: 0.36, // 36% TNA referencia
+        tnaFijaTramo1: 0.36
+      },
+      verde: {
+        nombre: "Financiamiento Verde",
+        min: 0,
+        max: 200000000,
+        tramoVariableDesdeMes: 25,
+        tnaFijaTramo1Default: 0.27, // 27% TNA referencia
+        tnaFijaTramo1: 0.27
+      },
+      mujeres: {
+        nombre: "Mujeres",
+        min: 0,
+        max: 200000000,
+        tramoVariableDesdeMes: 25,
+        tnaFijaTramo1Default: 0.27, // referencia (puede cambiar)
+        tnaFijaTramo1: 0.27
+      },
+      triple: {
+        nombre: "Triple Impacto",
+        min: 0,
+        max: 300000000,
+        tramoVariableDesdeMes: 25,
+        tnaFijaTramo1Default: 0.216, // 21,6% TNA referencia
+        tnaFijaTramo1: 0.216
+      }
+    };
+
+    function formatearMonto(valor) {
+      return valor.toLocaleString("es-AR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function tasaMensualDesdeTNA(tna) {
+      return tna / 12;
+    }
+
+    function obtenerTasaMensual(lineaKey, mes, tamarTnaAplicada) {
+      const cfg = lineConfigs[lineaKey];
+
+      if (mes < cfg.tramoVariableDesdeMes) {
+        return tasaMensualDesdeTNA(cfg.tnaFijaTramo1);
+      }
+
+      if (!tamarTnaAplicada || tamarTnaAplicada <= 0) {
+        throw new Error("Para este plazo se requiere la tasa TAMAR + 2 p.p. (TNA). Revisá si se cargó correctamente.");
+      }
+      const tnaDecimal = tamarTnaAplicada / 100;
+      return tasaMensualDesdeTNA(tnaDecimal);
+    }
+
+    // Función para inicializar TAMAR solo cuando el usuario lo solicite
+    function inicializarTamar() {
+      // No llamar automáticamente, solo mostrar estado inicial
+      const estado = document.getElementById("tamarEstado");
+      if (estado) {
+        estado.innerHTML = `
+        <i class="fas fa-info-circle"></i>
+        Presiona el botón para cargar la tasa TAMAR automáticamente desde BCRA.
+      `;
+      }
+
+      const inputTamar = document.getElementById("tamarTna");
+      const inputFecha = document.getElementById("tamarFecha");
+
+      if (inputTamar && inputFecha) {
+        inputTamar.readOnly = false;
+        inputFecha.readOnly = false;
+
+        // Poner valores de ejemplo
+        const valorEjemplo = (95.5 + 2).toFixed(3);
+        inputTamar.placeholder = `Ej: ${valorEjemplo}`;
+
+        const fechaEjemplo = new Date().toLocaleDateString('es-AR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }).replace(/\//g, '/');
+        inputFecha.placeholder = `Ej: ${fechaEjemplo}`;
+      }
+    }
+
+    // Intenta obtener TAMAR desde BCRA
+    // Intenta obtener TAMAR desde BCRA
+    async function cargarTamarAutomaticamente() {
+      const inputTamar = document.getElementById("tamarTna");
+      const inputFecha = document.getElementById("tamarFecha");
+      const estado = document.getElementById("tamarEstado");
+
+      if (!inputTamar || !inputFecha || !estado) {
+        console.error("Elementos del DOM no encontrados");
+        return;
+      }
+
+      inputTamar.readOnly = true;
+      inputFecha.readOnly = true;
+      estado.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando TAMAR desde BCRA...';
+      inputTamar.value = "";
+
+      try {
+        // Opción 1: Usar un proxy CORS para evitar el bloqueo del navegador
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const apiUrl = 'https://estadisticasbcra.com/api/principales_variables';
+
+        console.log("Intentando obtener TAMAR a través del proxy CORS...");
+
+        const resp = await fetch(proxyUrl + apiUrl, {
+          method: "GET",
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest' // Algunos proxies lo requieren
+          }
+        });
+
+        if (!resp.ok) {
+          throw new Error(`El proxy respondió con error: ${resp.status}`);
+        }
+
+        const data = await resp.json();
+
+        if (!data || !data.values) {
+          throw new Error("El proxy no devolvió datos válidos.");
+        }
+
+        const tamarData = data.values.find(v =>
+          v.descripcion &&
+          v.descripcion.toLowerCase().includes('tamar')
+        );
+
+        if (!tamarData || !tamarData.valor) {
+          throw new Error("No se encontró el dato de TAMAR en la respuesta del proxy.");
+        }
+
+        const tamarBase = parseFloat(tamarData.valor);
+        if (isNaN(tamarBase) || tamarBase <= 0) {
+          throw new Error("El valor de TAMAR recibido no es un número válido.");
+        }
+
+        const tamarMasDos = tamarBase + 2;
+        inputTamar.value = tamarMasDos.toFixed(3);
+
+        const fecha = new Date().toLocaleDateString('es-AR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }).replace(/\//g, '/');
+        inputFecha.value = fecha;
+
+        estado.innerHTML = `<i class="fas fa-check-circle" style="color: var(--success-color);"></i> ¡Éxito! TAMAR cargada a través del proxy: ${tamarBase.toFixed(3)}% → ${tamarMasDos.toFixed(3)}% (TAMAR + 2 p.p.)`;
+
+        inputTamar.readOnly = true;
+        inputFecha.readOnly = true;
+
+      } catch (e) {
+        console.error("Error al cargar TAMAR (incluso con proxy):", e);
+
+        // Si el proxy falla, mostrar un mensaje claro y permitir ingreso manual
+        estado.innerHTML = `
+    <div style="line-height: 1.6;">
+      <i class="fas fa-info-circle" style="color: var(--accent-color);"></i>
+      <strong>Ingresá la tasa TAMAR manualmente:</strong>
+      <ol style="margin-left: 20px; margin-top: 10px; text-align: left;">
+        <li>Hacé clic en <a href="https://www.bcra.gob.ar/PublicacionesEstadisticas/Principales_variables.asp" target="_blank" style="color: var(--accent-color); text-decoration: underline;">este enlace al sitio del BCRA</a>.</li>
+        <li>Buscá la fila que dice "TAMAR en pesos de bancos privados (en % n.a.)".</li>
+        <li>Copiá el valor numérico que ves (ej: 97.500).</li>
+        <li>Sumale <strong>2 puntos porcentuales</strong> (ej: 97.500 + 2 = 99.500).</li>
+        <li>Ingresá ese resultado en el campo "TAMAR + 2 p.p.".</li>
+      </ol>
+      <hr style="margin: 15px 0; border: 1px solid rgba(255,255,255,0.1);">
+      <small style="color: var(--text-secondary);">
+        <strong>Nota:</strong> Debido a políticas de seguridad de los navegadores y del BCRA,
+        la carga automática no es confiable. El ingreso manual es el método más seguro y preciso.
+      </small>
+    </div>
+  `;
+
+        inputTamar.readOnly = false;
+        inputFecha.readOnly = false;
+
+        inputTamar.placeholder = "Ej: 97.500";
+        inputFecha.placeholder = "Ej: 23/10/2023";
+      }
+    }
+    // Obtener tasa fija del primer tramo desde la página del CFI de la línea
+    async function cargarTasaLineaDesdeCFI(lineaKey) {
+      const cfg = lineConfigs[lineaKey];
+      const url = cfiRatePages[lineaKey];
+      const estado = document.getElementById("tasaCfiEstado");
+
+      if (!cfg) return;
+
+      // Si ya se cargó una vez, no volvemos a pedir
+      if (cfg._tasaCfiIntentada) return;
+      cfg._tasaCfiIntentada = true;
+
+      if (!url) {
+        cfg.tnaFijaTramo1 = cfg.tnaFijaTramo1Default;
+        if (estado) {
+          estado.innerHTML = `<i class="fas fa-info-circle"></i> No se encontró página de tasa específica en CFI para ${cfg.nombre}. Se usa la tasa de referencia interna: ${(cfg.tnaFijaTramo1Default * 100).toFixed(2)}% TNA.`;
+        }
+        return;
+      }
+
+      if (estado) {
+        estado.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Buscando tasa vigente en el sitio del CFI para ${cfg.nombre}...`;
+      }
+
+      try {
+        const resp = await fetch(url, { method: "GET" });
+        if (!resp.ok) throw new Error("Error HTTP " + resp.status);
+        const text = await resp.text();
+
+        // Buscamos la sección de Tasas y el primer "% Nominal Anual"
+        const idxTasas = text.indexOf("##   Tasas");
+        const fragment = idxTasas !== -1 ? text.substring(idxTasas, idxTasas + 400) : text;
+
+        const match = fragment.match(/(\d{1,2}(?:,\d+)?|\d{1,2}\.\d+)\s*%\s*Nominal Anual/);
+        if (!match) throw new Error("No se encontró la TNA 'Nominal Anual' en la sección de Tasas.");
+
+        let numStr = match[1].trim();
+        // Manejo 21,6 o 36,0 o 27
+        if (numStr.includes(",") && numStr.includes(".")) {
+          numStr = numStr.replace(/\./g, "").replace(",", ".");
+        } else if (numStr.includes(",")) {
+          numStr = numStr.replace(",", ".");
+        }
+        const tnaNumero = parseFloat(numStr);
+        if (isNaN(tnaNumero)) throw new Error("No se pudo interpretar el valor de TNA.");
+
+        cfg.tnaFijaTramo1 = tnaNumero / 100;
+        cfg._tnaCfiValor = tnaNumero;
+
+        if (estado) {
+          estado.innerHTML = `<i class="fas fa-check-circle"></i> Tasa vigente según sitio CFI (${cfg.nombre}): ${tnaNumero.toFixed(2)}% Nominal Anual (primer tramo fija).`;
+        }
+      } catch (e) {
+        console.error(e);
+        cfg.tnaFijaTramo1 = cfg.tnaFijaTramo1Default;
+        cfg._tnaCfiValor = cfg.tnaFijaTramo1Default * 100;
+        if (estado) {
+          estado.innerHTML = `<i class="fas fa-exclamation-circle"></i> No se pudo obtener la tasa desde el sitio CFI para ${cfg.nombre}. Se utiliza la tasa de referencia interna: ${(cfg.tnaFijaTramo1Default * 100).toFixed(2)}% TNA.`;
+        }
+      }
+    }
+
+    let ultimaSimulacion = null;
+
+    async function simular() {
+      const lineaKey = document.getElementById("linea").value;
+      const monto = Number(document.getElementById("monto").value);
+      const plazo = parseInt(document.getElementById("plazo").value, 10);
+      const gracia = parseInt(document.getElementById("gracia").value, 10);
+      const frecuencia = document.getElementById("frecuencia").value;
+      const tamarTna = document.getElementById("tamarTna").value ? Number(document.getElementById("tamarTna").value) : null;
+      const tamarFecha = document.getElementById("tamarFecha").value.trim();
+
+      const divError = document.getElementById("error");
+      const resultCard = document.getElementById("resultCard");
+      const tablaWrapper = document.getElementById("tablaWrapper");
+      const resumenDiv = document.getElementById("resumen");
+      const notaTasaCFI = document.getElementById("notaTasaCFI");
+      const notaTamar = document.getElementById("notaTamar");
+      const notaLegal = document.getElementById("notaLegal");
+      const btnExportar = document.getElementById("btnExportar");
+      const btnImprimir = document.getElementById("btnImprimir");
+
+      divError.style.display = "none";
+      resultCard.style.display = "none";
+      tablaWrapper.innerHTML = "";
+      notaTasaCFI.querySelector('span').textContent = "";
+      notaTamar.querySelector('span').textContent = "";
+      notaLegal.querySelector('span').textContent = "";
+      btnExportar.disabled = true;
+      btnImprimir.disabled = true;
+      ultimaSimulacion = null;
+
+      if (!lineaKey || isNaN(monto) || isNaN(plazo) || isNaN(gracia)) {
+        divError.querySelector('span').textContent = "Por favor, ingresá todos los datos numéricos.";
+        divError.style.display = "flex";
+        return;
+      }
+
+      const cfg = lineConfigs[lineaKey];
+
+      // Antes de calcular, buscamos la tasa de esa línea en el CFI (si aún no se buscó)
+      await cargarTasaLineaDesdeCFI(lineaKey);
+
+      if (monto < cfg.min || (cfg.max > 0 && monto > cfg.max)) {
+        divError.querySelector('span').textContent = "El monto ingresado está fuera del rango permitido para la línea seleccionada.";
+        divError.style.display = "flex";
+        return;
+      }
+
+      if (plazo > 48 || plazo <= 0) {
+        divError.querySelector('span').textContent = "El plazo máximo permitido es de 48 meses.";
+        divError.style.display = "flex";
+        return;
+      }
+
+      if (gracia < 0 || gracia > 6 || gracia >= plazo) {
+        divError.querySelector('span').textContent = "El período de gracia no puede superar los 6 meses ni igualar o exceder el plazo total.";
+        divError.style.display = "flex";
+        return;
+      }
+
+      if (frecuencia !== "mensual") {
+        divError.querySelector('span').textContent = "Por el momento solo se admite frecuencia mensual.";
+        divError.style.display = "flex";
+        return;
+      }
+
+      const mesesAmortizacion = plazo - gracia;
+      const amortizacionConstante = monto / mesesAmortizacion;
+
+      let saldo = monto;
+      let totalIntereses = 0;
+      let totalAmortizacion = 0;
+      let totalCuotas = 0;
+
+      let rows = [];
+
+      let html = "<table>";
+      html += "<thead><tr>" +
+        "<th>Mes</th>" +
+        "<th>Tasa mensual (%)</th>" +
+        "<th>Interés</th>" +
+        "<th>Amortización</th>" +
+        "<th>Cuota</th>" +
+        "<th>Saldo</th>" +
+        "</tr></thead><tbody>";
+
+      try {
+        for (let mes = 1; mes <= plazo; mes++) {
+          const tasaMensual = obtenerTasaMensual(lineaKey, mes, tamarTna);
+          const interes = saldo * tasaMensual;
+          let amort = 0;
+
+          if (mes > gracia) {
+            amort = amortizacionConstante;
+            if (mes === plazo) {
+              amort = saldo;
+            }
+          }
+
+          const cuota = interes + amort;
+          saldo -= amort;
+
+          totalIntereses += interes;
+          totalAmortizacion += amort;
+          totalCuotas += cuota;
+
+          const tasaPct = tasaMensual * 100;
+
+          html += "<tr>" +
+            `<td>${mes}</td>` +
+            `<td>${tasaPct.toFixed(4)}</td>` +
+            `<td>${formatearMonto(interes)}</td>` +
+            `<td>${formatearMonto(amort)}</td>` +
+            `<td>${formatearMonto(cuota)}</td>` +
+            `<td>${formatearMonto(Math.max(saldo, 0))}</td>` +
+            "</tr>";
+
+          rows.push({
+            mes,
+            tasaMensualPct: tasaPct,
+            interes,
+            amort,
+            cuota,
+            saldo: Math.max(saldo, 0)
+          });
+        }
+      } catch (e) {
+        divError.querySelector('span').textContent = e.message;
+        divError.style.display = "flex";
+        return;
+      }
+
+      html += "</tbody><tfoot><tr>" +
+        "<td colspan=\"2\">Totales</td>" +
+        `<td>${formatearMonto(totalIntereses)}</td>` +
+        `<td>${formatearMonto(totalAmortizacion)}</td>` +
+        `<td>${formatearMonto(totalCuotas)}</td>` +
+        "<td></td></tr></tfoot></table>";
+
+      tablaWrapper.innerHTML = html;
+
+      resumenDiv.innerHTML = `
+      <h3>Resumen del préstamo</h3>
+      <div class="summary-item">
+        <span>Línea:</span>
+        <span>${cfg.nombre}</span>
+      </div>
+      <div class="summary-item">
+        <span>Monto:</span>
+        <span>$${formatearMonto(monto)}</span>
+      </div>
+      <div class="summary-item">
+        <span>Plazo total:</span>
+        <span>${plazo} meses</span>
+      </div>
+      <div class="summary-item">
+        <span>Período de gracia:</span>
+        <span>${gracia} meses</span>
+      </div>
+      <div class="summary-item">
+        <span>Frecuencia:</span>
+        <span>${frecuencia}</span>
+      </div>
+      <div class="summary-item">
+        <span>Sistema:</span>
+        <span>Alemán (amortización constante desde el fin de la gracia)</span>
+      </div>
+      <div class="summary-item">
+        <span>Total intereses:</span>
+        <span>$${formatearMonto(totalIntereses)}</span>
+      </div>
+      <div class="summary-item">
+        <span>Total a pagar:</span>
+        <span>$${formatearMonto(totalCuotas)}</span>
+      </div>
+    `;
+
+      // Nota sobre tasa fija del CFI
+      const tnaCfi = cfg._tnaCfiValor;
+      if (tnaCfi) {
+        notaTasaCFI.querySelector('span').textContent =
+          `Tasa vigente según sitio oficial del CFI (${cfg.nombre}): ${tnaCfi.toFixed(2)}% TNA fija para el primer tramo. Desde el mes ${cfg.tramoVariableDesdeMes}, la tasa pasa a ser TAMAR + 2 p.p. (TNA).`;
+      } else {
+        notaTasaCFI.querySelector('span').textContent =
+          `No se pudo leer la tasa fija desde el sitio del CFI. Se utilizó la tasa de referencia interna para el cálculo: ${(cfg.tnaFijaTramo1Default * 100).toFixed(2)}% TNA. Verificar manualmente la tasa vigente según el sitio CFI.`;
+      }
+
+      // Nota sobre TAMAR
+      let textoTamar = "";
+      const mesVariable = cfg.tramoVariableDesdeMes;
+      if (mesVariable <= plazo) {
+        textoTamar =
+          `Desde el mes ${mesVariable}, la cuota se calcula con la tasa anual TAMAR + 2 p.p. utilizada en esta simulación.`;
+        if (tamarTna) {
+          textoTamar += ` Tasa TAMAR + 2 p.p. aplicada: ${tamarTna.toFixed(3)}% TNA`;
+          if (tamarFecha) {
+            textoTamar += ` (según BCRA al ${tamarFecha}).`;
+          } else {
+            textoTamar += ".";
+          }
+        } else {
+          textoTamar += " No se informó valor de TAMAR + 2 p.p. en esta simulación.";
+        }
+      }
+      notaTamar.querySelector('span').textContent = textoTamar;
+
+      notaLegal.querySelector('span').textContent =
+        "Simulación orientativa. La tasa vigente y las condiciones definitivas deben verificarse en el sitio oficial del CFI y con las áreas técnicas y crediticias.";
+
+      resultCard.style.display = "block";
+      btnExportar.disabled = false;
+      btnImprimir.disabled = false;
+
+      ultimaSimulacion = {
+        linea: cfg.nombre,
+        monto,
+        plazo,
+        gracia,
+        frecuencia,
+        tamarTna,
+        tamarFecha,
+        rows,
+        totalIntereses,
+        totalAmortizacion,
+        totalCuotas
+      };
+    }
+
+    function exportarCSV() {
+      if (!ultimaSimulacion) return;
+
+      const sim = ultimaSimulacion;
+      let csv = "";
+      csv += "Linea," + sim.linea + "\n";
+      csv += "Monto," + sim.monto + "\n";
+      csv += "Plazo," + sim.plazo + "\n";
+      csv += "Gracia," + sim.gracia + "\n";
+      csv += "Frecuencia," + sim.frecuencia + "\n";
+      if (sim.tamarTna) {
+        csv += "TAMAR+2 TNA (%)," + sim.tamarTna + "\n";
+        csv += "Fecha TAMAR," + (sim.tamarFecha || "") + "\n";
+      }
+      csv += "\n";
+      csv += "Mes,Tasa mensual (%),Interes,Amortizacion,Cuota,Saldo\n";
+
+      sim.rows.forEach(r => {
+        csv += [
+          r.mes,
+          r.tasaMensualPct.toFixed(4),
+          r.interes.toFixed(2),
+          r.amort.toFixed(2),
+          r.cuota.toFixed(2),
+          r.saldo.toFixed(2)
+        ].join(",") + "\n";
+      });
+
+      csv += "\n";
+      csv += [
+        "Totales",
+        "",
+        sim.totalIntereses.toFixed(2),
+        sim.totalAmortizacion.toFixed(2),
+        sim.totalCuotas.toFixed(2),
+        ""
+      ].join(",") + "\n";
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const montoStr = sim.monto.toFixed(0);
+      a.href = url;
+      a.download = `Cuadro_Cuotas_${sim.linea.replace(/\s+/g, "")}_${montoStr}_CFI.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Event listener que se ejecuta cuando el DOM está listo
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const navMenu = document.getElementById("navMenu");
+
+      if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+          link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+          });
+        });
+      }
+
+      // Inicializar TAMAR (sin cargar automáticamente)
+      inicializarTamar();
+
+      // Event listeners para los botones
+      const btnSimular = document.getElementById("btnSimular");
+      const btnExportar = document.getElementById("btnExportar");
+      const btnImprimir = document.getElementById("btnImprimir");
+      const btnActualizarTamar = document.getElementById("btnActualizarTamar");
+      const lineaSelect = document.getElementById("linea");
+
+      if (btnSimular) btnSimular.addEventListener("click", simular);
+      if (btnExportar) btnExportar.addEventListener("click", exportarCSV);
+      if (btnImprimir) btnImprimir.addEventListener("click", () => window.print());
+      if (btnActualizarTamar) btnActualizarTamar.addEventListener("click", cargarTamarAutomaticamente);
+
+      // Cada vez que cambiás de línea, reseteo el mensaje de tasa CFI y permito que vuelva a buscar
+      if (lineaSelect) {
+        lineaSelect.addEventListener("change", () => {
+          const key = lineaSelect.value;
+          const cfg = lineConfigs[key];
+          if (cfg) {
+            cfg._tasaCfiIntentada = false;
+          }
+          const tasaCfiEstado = document.getElementById("tasaCfiEstado");
+          if (tasaCfiEstado) {
+            tasaCfiEstado.innerHTML =
+              `<i class="fas fa-info-circle"></i> Tasa fija del primer tramo: se tomará automáticamente desde el sitio oficial del CFI para ${cfg ? cfg.nombre : "la línea seleccionada"}.`;
+          }
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>
