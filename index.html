@@ -214,6 +214,17 @@
       line-height: 1.4;
     }
 
+    .help-lineas{
+      font-size: 0.85rem;
+      color: #6c757d;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    .help-ultima-linea{
+      margin-bottom: 30px;
+    }
+
     .error {
       color: #dc3545;
       font-size: 0.9rem;
@@ -381,6 +392,10 @@
       <div class="help-uso-interno">
         Uso interno UEP. Resultados orientativos, no constituyen oferta ni instrumento oficial.
       </div>
+      <div class="help-lineas"><strong>Competitividad PyME:</strong> fija 36% TNA hasta el mes 12; desde el 13 aplica TAMAR + 2. - <a href="https://cfi.org.ar/competitividad_pyme" target="_blank">Ver detalles</a></div>
+      <div class="help-lineas"><strong>Financiamiento Verde:</strong> fija 27% TNA hasta el mes 24; luego TAMAR + 2. - <a href="https://cfi.org.ar/financiamiento_verde" target="_blank">Ver detalles</a></div>
+      <div class="help-lineas"><strong>Línea Mujeres:</strong> fija 27% TNA hasta el mes 24; luego TAMAR + 2. - <a href="https://cfi.org.ar/desarrollo_productivo_financiero_mujeres" target="_blank">Ver detalles</a></div>
+      <div class="help-lineas help-ultima-linea"><strong>Triple Impacto:</strong> fija 21,6% TNA hasta el mes 24; luego TAMAR + 2. - <a href="https://cfi.org.ar/programas_abordaje_integral" target="_blank">Ver detalles</a></div>
 
       <div class="grid">
         <div>
@@ -397,9 +412,7 @@
           <label for="monto">Monto a financiar (en pesos)</label>
           <input id="monto" type="text" inputmode="numeric">
           <div class="help">
-            Competitividad PyME: $4.000.000 a $100.000.000<br>
-            Verde / Mujeres: hasta $200.000.000<br>
-            Triple Impacto: hasta $300.000.000
+            Máximo según línea de financiamiento
           </div>
         </div>
 
@@ -433,7 +446,7 @@
           </div>
         </div>
         <div>
-          <label for="tamarTna">Tasa TAMAR + 2 p.p. (%)</label>
+          <label for="tamarTna">Tasa TAMAR + 2 p.p. (%) - Se actualiza automáticamente -</label>
           <input id="tamarTna" type="number" min="0" step="0.01">
           <div class="help">Tasa anual variable</div>
         </div>
