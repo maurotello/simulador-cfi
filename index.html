@@ -159,12 +159,6 @@
       box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
     }
 
-    .help {
-      font-size: 0.75rem;
-      color: #666;
-      margin-top: 2px;
-    }
-
     button {
       background: linear-gradient(135deg, #0096c7 0%, #00b4d8 100%);
       color: #fff;
@@ -210,6 +204,13 @@
       font-size: 0.8rem;
       color: #6c757d;
       margin-top: 4px;
+      line-height: 1.4;
+    }
+    .help-uso-interno{
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin-top: 4px;
+      margin-bottom: 35px;
       line-height: 1.4;
     }
 
@@ -377,8 +378,7 @@
       </div>
     </div>
     <div class="card">
-      <h1>Simulador de cuotas CFI – Sistema alemán</h1>
-      <div class="help">
+      <div class="help-uso-interno">
         Uso interno UEP. Resultados orientativos, no constituyen oferta ni instrumento oficial.
       </div>
 
@@ -1085,7 +1085,7 @@
       doc.setFontSize(8);
       doc.setFont(undefined, 'bold');
       doc.setTextColor(0, 0, 0);
-      const disclaimerText = "Valores estimativos. Estos valores calculados no son finales y no obliga al CFI a que las cuotas de un crédito con estas características tengan cuotas idénticas. Es un cálculo estimativo e informativo para el interesado";
+      const disclaimerText = "La presente simulación tiene carácter meramente estimativo e informativo. Los valores proyectados no son definitivos ni vinculantes y no constituyen, bajo ningún concepto, la cuota final del crédito. El CFI no asume obligación alguna de otorgar un crédito con estas condiciones ni garantiza que las cuotas reales coincidan con los cálculos aquí exhibidos. Las condiciones financieras finales —incluyendo monto, tasa, plazo, sistema de amortización y valor de las cuotas— quedarán sujetas exclusivamente a la evaluación, aprobación y liquidación formal del crédito por parte del CFI.";
       const splitDisclaimer = doc.splitTextToSize(disclaimerText, pageWidth - (2 * margin));
       doc.text(splitDisclaimer, margin, y);
       y += (splitDisclaimer.length * 4) + 8; // Ajusta espacio según líneas
