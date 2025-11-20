@@ -419,13 +419,13 @@
         <div>
           <label for="plazo">Plazo total (meses)</label>
           <input id="plazo" type="number" min="1" max="48">
-          <div class="help">Máximo 48 meses.</div>
+          <div class="help">Máximo 48/60 meses s/ línea.</div>
         </div>
 
         <div>
           <label for="gracia">Período de gracia (meses)</label>
           <input id="gracia" type="number" min="0" max="6">
-          <div class="help">Máx. 6 meses. Debe ser menor al plazo total.</div>
+          <div class="help">Máx. 6/12 meses. s/ línea.</div>
         </div>
 
 
@@ -680,14 +680,20 @@
         return;
       }
 
-      if (plazo > cfg.plazoMAx || plazo <= 0) {
-        divError.textContent = "El plazo máximo permitido para la línea " + cfg.nombre + " es de " + cfg.plazoMAx;
+      if (plazo > cfg.plazoMax || plazo <= 0) {
+        divError.textContent = "El plazo máximo permitido para la línea " + cfg.nombre + " es de " + cfg.plazoMax + " meses.";
         return;
       }
 
-      if (gracia < 0 || gracia > cfg.graciaMax || gracia >= plazo) {
-        divError.textContent = "El período de gracia para " + cfg.nombre + " no puede ser mayor a " + cfg.graciaMax;
+      if (gracia < 0 || gracia > cfg.graciaMax) {
+        divError.textContent = "El período de gracia para " + cfg.nombre + " no puede ser mayor a " + cfg.graciaMax + " meses.";
         return;
+      }
+
+      // Validación crítica para asegurar que la gracia esté incluida en el plazo
+      if (gracia >= plazo) {
+         divError.textContent = "El período de gracia debe ser menor al plazo total del crédito.";
+         return;
       }
 
       if (!["mensual", "trimestral", "semestral"].includes(frecuencia)) {
