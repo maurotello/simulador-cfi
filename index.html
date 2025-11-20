@@ -480,28 +480,36 @@
         min: 4000000,
         max: 100000000,
         tramoVariableDesdeMes: 13, // desde mes 13 TAMAR + 2
-        tnaFijaTramo1: 0.36       // 36% TNA fija primer tramo
+        tnaFijaTramo1: 0.36,
+        plazoMax: 48,
+        graciaMax: 6
       },
       verde: {
         nombre: "Financiamiento Verde",
         min: 0,
         max: 200000000,
         tramoVariableDesdeMes: 25, // meses 1–24 tasa fija
-        tnaFijaTramo1: 0.27        // 27% TNA
+        tnaFijaTramo1: 0.27,
+        plazoMax: 60,
+        graciaMax: 12
       },
       mujeres: {
         nombre: "Mujeres",
         min: 0,
         max: 200000000,
         tramoVariableDesdeMes: 25,
-        tnaFijaTramo1: 0.27
+        tnaFijaTramo1: 0.27,
+        plazoMax: 48,
+        graciaMax: 12
       },
       triple: {
         nombre: "Triple Impacto",
         min: 0,
         max: 300000000,
         tramoVariableDesdeMes: 25,
-        tnaFijaTramo1: 0.216       // 21,6% TNA
+        tnaFijaTramo1: 0.216,
+        plazoMax: 60,
+        graciaMax: 12
       }
     };
 
@@ -672,13 +680,13 @@
         return;
       }
 
-      if (plazo > 48 || plazo <= 0) {
-        divError.textContent = "El plazo máximo permitido es de 48 meses.";
+      if (plazo > cfg.plazoMAx || plazo <= 0) {
+        divError.textContent = "El plazo máximo permitido para la línea " + cfg.nombre + " es de " + cfg.plazoMAx;
         return;
       }
 
-      if (gracia < 0 || gracia > 6 || gracia >= plazo) {
-        divError.textContent = "El período de gracia no puede superar los 6 meses ni igualar o exceder el plazo total.";
+      if (gracia < 0 || gracia > cfg.graciaMax || gracia >= plazo) {
+        divError.textContent = "El período de gracia para " + cfg.nombre + " no puede ser mayor a " + cfg.graciaMax;
         return;
       }
 
