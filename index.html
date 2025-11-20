@@ -949,7 +949,7 @@
             const tasaPct = tasaPeriodo * 100;
 
             html += "<tr>" +
-              `<td data-label="Período">${mes}</td>` +  // IMPORTANTE: En el otro loop usa ${n}
+              `<td data-label="Período">${n}</td>` +  // IMPORTANTE: En el otro loop usa ${n}
               `<td data-label="Tasa (%)">${tasaPct.toFixed(4)}</td>` +
               `<td data-label="Interés">${formatearMonto(interes)}</td>` +
               `<td data-label="Amortización">${formatearMonto(amort)}</td>` +
