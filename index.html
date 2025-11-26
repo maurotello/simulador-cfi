@@ -711,19 +711,23 @@
 
         if (tamar) {
           const valorBase = Number(tamar.value);
+          console.log("Encontró TAMAR valor base:", valorBase);
           if (!valorBase || isNaN(valorBase)) {
             throw new Error("El campo 'value' de TAMAR no es numérico: " + tamar.value);
           }
 
           // SUMAMOS +2 p.p. (TAMAR + 2)
           const valorConDos = valorBase + 2;
+          console.log("TAMAR + 2 p.p.:", valorConDos);
 
           // Cargamos en los inputs del simulador
           inputTamar.value = valorConDos.toFixed(3);
 
           const fechaObj = new Date(tamar.date); // YYYY-MM-DD
+          console.log("Fecha TAMAR encontrada:", fechaObj);
           if (!isNaN(fechaObj.getTime())) {
             inputFecha.value = formatearFechaDDMMYYYY(fechaObj);
+            console.log("Fecha TAMAR formateada:", inputFecha.value);
           } else {
             inputFecha.value = "";
           }
