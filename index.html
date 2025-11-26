@@ -865,6 +865,7 @@
           // ---- CASO MENSUAL: un período por mes (Lógica original correcta) ----
           const amortizacionConstante = monto / mesesAmortizacion;
 
+          /*
           for (let mes = 1; mes <= plazo; mes++) {
             const tasaMensual = obtenerTasaMensual(lineaKey, mes, tamarTna);
             const tasaPeriodo = tasaMensual; // 1 mes
@@ -905,6 +906,45 @@
               cuota,
               saldo: Math.max(saldo, 0)
             });
+          }*/
+          for (let mes = 1; mes <= plazo; mes++) {
+            const tasaPeriodoDecimal = obtenerTasaPeriodoDecimal(lineaKey, mes, tamarTna, diasPeriodo);
+            const interes = saldo * tasaPeriodoDecimal;
+            let amort = 0;
+
+            if (mes > gracia) {
+              amort = amortizacionConstante;
+              if (mes === plazo) {
+                amort = saldo; // ajuste final para que sume exactamente el capital
+              }
+            }
+
+            const cuota = interes + amort;
+            saldo -= amort;
+
+            totalIntereses += interes;
+            totalAmortizacion += amort;
+            totalCuotas += cuota;
+
+            const tasaPct = tasaPeriodoDecimal * 100;
+
+            html += "<tr>" +
+              `<td data-label="Período">${mes}</td>` +
+              `<td data-label="Tasa (%)">${tasaPct.toFixed(4)}</td>` +
+              `<td data-label="Interés">${formatearMonto(interes)}</td>` +
+              `<td data-label="Amortización">${formatearMonto(amort)}</td>` +
+              `<td data-label="Cuota">${formatearMonto(cuota)}</td>` +
+              `<td data-label="Saldo">${formatearMonto(Math.max(saldo, 0))}</td>` +
+              "</tr>";
+
+            rows.push({
+              periodo: mes,
+              tasaPeriodoPct: tasaPct,
+              interes,
+              amort,
+              cuota,
+              saldo: Math.max(saldo, 0)
+            });
           }
 
         } else {
@@ -919,7 +959,9 @@
 
           const amortizacionConstante = monto / numCuotasAmortizacion; // La amortización constante
 
-          for (let n = 1; n <= numCuotasTotales; n++) {
+          /*
+          for (let n = 1; n <= numCuotasTotales; n++) 
+          {
 
             // El mes del cronograma en el que se paga esta cuota
             const mesDelPago = n * factorFrecuencia;
@@ -963,6 +1005,45 @@
 
             rows.push({
               periodo: n,
+              tasaPeriodoPct: tasaPct,
+              interes,
+              amort,
+              cuota,
+              saldo: Math.max(saldo, 0)
+            });
+          }*/
+          for (let mes = 1; mes <= plazo; mes++) {
+            const tasaPeriodoDecimal = obtenerTasaPeriodoDecimal(lineaKey, mes, tamarTna, diasPeriodo);
+            const interes = saldo * tasaPeriodoDecimal;
+            let amort = 0;
+
+            if (mes > gracia) {
+              amort = amortizacionConstante;
+              if (mes === plazo) {
+                amort = saldo; // ajuste final para que sume exactamente el capital
+              }
+            }
+
+            const cuota = interes + amort;
+            saldo -= amort;
+
+            totalIntereses += interes;
+            totalAmortizacion += amort;
+            totalCuotas += cuota;
+
+            const tasaPct = tasaPeriodoDecimal * 100;
+
+            html += "<tr>" +
+              `<td data-label="Período">${mes}</td>` +
+              `<td data-label="Tasa (%)">${tasaPct.toFixed(4)}</td>` +
+              `<td data-label="Interés">${formatearMonto(interes)}</td>` +
+              `<td data-label="Amortización">${formatearMonto(amort)}</td>` +
+              `<td data-label="Cuota">${formatearMonto(cuota)}</td>` +
+              `<td data-label="Saldo">${formatearMonto(Math.max(saldo, 0))}</td>` +
+              "</tr>";
+
+            rows.push({
+              periodo: mes,
               tasaPeriodoPct: tasaPct,
               interes,
               amort,
