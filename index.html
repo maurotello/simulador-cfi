@@ -31,46 +31,34 @@
       border-radius: 16px;
       backdrop-filter: blur(10px);
       display: flex;
-      /* Habilita Flexbox */
       align-items: center;
-      /* Centrado vertical para todos los ítems */
       justify-content: center;
-      /* Centrado horizontal (opcional, pero ayuda) */
       text-align: left;
-      /* Alinea los textos a la izquierda dentro de su contenedor */
     }
 
     h1 {
       font-size: 2.2rem;
       margin-bottom: 0.5rem;
       font-weight: 700;
-      /*background: linear-gradient(90deg, #00b4d8, #0096c7);*/
       display: flex;
       align-items: center;
       margin-right: 20px;
       color: #ffffff;
     }
 
-    /* Ajuste para que el texto secundario (p) quede centrado con el h1 */
     .page-header>p {
       margin: 0;
       opacity: 0.9;
       align-self: center;
-      /* Asegura que el párrafo se alinee con el centro */
     }
 
-    /* Creamos una nueva clase para agrupar los textos de la derecha */
     .header-text-group {
       display: flex;
       flex-direction: column;
-      /* Apila los textos verticalmente */
       justify-content: center;
-      /* Centra los textos apilados */
       margin-left: 20px;
-      /* Espacio entre el logo/título y el texto de la derecha */
     }
 
-    /* Eliminamos el margen inferior en el texto principal y el superior en el subtítulo */
     .header-text-group h1 {
       margin-bottom: 0px;
     }
@@ -108,15 +96,6 @@
       gap: 20px;
       margin-top: 16px;
     }
-
-    /*
-    .input-small {
-      max-width: 200px;
-    }
-
-    .input-medium {
-      max-width: 280px;
-    }*/
 
     @media (max-width: 768px) {
       .grid {
@@ -236,12 +215,10 @@
       border-radius: 8px;
       border-left: 4px solid #dc3545;
       display: none;
-      /* Agrega esta línea */
     }
 
     .error:not(:empty) {
       display: block;
-      /* Se muestra solo cuando tiene contenido */
     }
 
     table {
@@ -358,33 +335,13 @@
       }
     }
 
-    @media print {
-      body {
-        background: #fff;
-        padding: 0;
-      }
-
-      .card {
-        box-shadow: none;
-        border-radius: 0;
-      }
-
-      button,
-      #error {
-        display: none;
-      }
-    }
-
-    /* --- RESPONSIVE HEADER --- */
     @media (max-width: 768px) {
       .page-header {
         flex-direction: column;
-        /* Apila verticalmente */
         text-align: center;
         padding: 20px 10px;
       }
 
-      /* Forzamos a los divs internos a ocupar el ancho y quitar margenes inline */
       .page-header>div {
         margin: 0 !important;
         width: 100%;
@@ -395,26 +352,20 @@
       .header-text-group {
         margin-left: 0 !important;
         margin-top: 15px;
-        /* Espacio entre logo y título */
         align-items: center;
       }
 
-      /* Ajustamos el tamaño del texto en móviles */
       .header-text-group h1 {
         font-size: 1.4rem;
         text-align: center;
       }
     }
 
-    /* --- RESPONSIVE TABLE (Card View) --- */
     @media (max-width: 768px) {
-
-      /* Ocultamos el encabezado de la tabla */
       thead {
         display: none;
       }
 
-      /* Convertimos la tabla en bloque */
       table,
       tbody,
       tfoot,
@@ -426,7 +377,6 @@
         box-sizing: border-box;
       }
 
-      /* Estilo de "Tarjeta" para cada fila */
       tbody tr {
         margin-bottom: 20px;
         background: #fff;
@@ -436,11 +386,9 @@
         overflow: hidden;
       }
 
-      /* Estilo de cada celda dentro de la tarjeta */
       td {
         display: flex;
         justify-content: space-between;
-        /* Etiqueta a la izq, valor a la der */
         align-items: center;
         text-align: right;
         padding: 12px 15px;
@@ -453,10 +401,8 @@
         border-bottom: none;
       }
 
-      /* Magia: Usamos el atributo data-label para poner el título a la izquierda */
       td::before {
         content: attr(data-label);
-        /* Lee el atributo del HTML */
         font-weight: 700;
         color: #6c757d;
         text-transform: uppercase;
@@ -465,7 +411,6 @@
         margin-right: 15px;
       }
 
-      /* Ajustes especiales para el footer (Totales) */
       tfoot tr {
         margin-top: 20px;
         border: 2px solid #00b4d8;
@@ -473,7 +418,6 @@
         background: #f8f9fa;
       }
 
-      /* Ocultamos celdas vacías en el footer si las hay */
       tfoot td:empty {
         display: none;
       }
@@ -487,7 +431,7 @@
       <div style="display: flex; align-items: center; margin-right: auto;">
         <h1>
           <img
-            src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgaWQ9IkNhcGFfMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiANCiAgICAgd2lkdGg9IjM1MCIgDQogICAgIGhlaWdodD0iMTIwIiANCiAgICAgdmlld0JveD0iMCAwIDU3NC4yNiAyMTMuNDQiPg0KICA8ZGVmcz4NCiAgICA8c3R5bGU+LmNscy0xLC5jbHMtMntmaWxsOm5vbmU7c3Ryb2tlOiNmZmY7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjUuNHB4O30uY2xzLTN7ZmlsbDojZmZmO30uY2xzLTJ7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7fTwvc3R5bGU+DQogIDwvZGVmcz4NCiAgPGcgaWQ9IkxheWVyXzEiPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTI2OC41LDk5LjA4Yy0uOTguNDMtMi44Ni43Ny01LjE3Ljc3LTguODQsMC0xMy4wMy02Ljc4LTEzLjAzLTE2LDAtMTIuMiw3LjIxLTE2Ljk2LDEzLjktMTYuOTYsMi4zNCwwLDMuOTguNDMsNC42NS44N2wtMS4xMiw1LjI5Yy0uNzctLjM0LTEuNjMtLjYzLTMuMTItLjYzLTMuNzgsMC03LjIxLDMuMDctNy4yMSwxMS4xczMuMTIsMTAuNzcsNy4yMSwxMC43N2MxLjEyLDAsMi40MS0uMjQsMy4yMi0uNDlsLjY3LDUuMjlaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMjkyLjk2LDgyLjc5YzAsMTIuMjEtNC42LDE3LjE1LTExLjE0LDE3LjE1LTcuODIsMC0xMC44OC03Ljc4LTEwLjg4LTE2LjY3czMuNzMtMTYuNDgsMTEuNC0xNi40OGM4LjI4LDAsMTAuNjMsOC42LDEwLjYzLDE1Ljk5Wk0yNzcuODksODMuMzdjMCw3LjM0LDEuNDgsMTEuMSw0LjE5LDExLjEsMi44NiwwLDMuOTMtNC44LDMuOTMtMTEuMzksMC01LjY3LS45Mi0xMC44LTMuOTktMTAuOC0yLjY1LDAtNC4xMyw0LjEzLTQuMTMsMTEuMVoiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0yOTguMjIsOTkuNTZ2LTMyLjM4aDYuMTRsNS4zMSwxMi42OGMxLjA3LDIuNDksMi43MSw2LjY3LDMuNjgsOS40NmguMWMtLjIxLTMuNDEtLjY3LTkuMDMtLjY3LTE0Ljk4di03LjE2aDUuODh2MzIuMzhoLTYuMTNsLTUuMjYtMTIuM2MtMS4xNy0yLjc0LTIuNzEtNi44Ny0zLjUzLTkuNzVoLS4xYy4yLDMuMjcuNDYsOC4yNi40NiwxNC44djcuMjVoLTUuODhaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzI0LjYsOTMuMTJjMS4zOC43MiwzLjc5LDEuMjUsNS42NywxLjI1LDMuMTIsMCw0LjctMS41NCw0LjctMy42NSwwLTIuMzUtMS41My0zLjUtNC40NS01LjI4LTQuNy0yLjY5LTYuNDktNi4xLTYuNDktOS4wMywwLTUuMTgsMy42OC05LjUxLDEwLjgzLTkuNTEsMi4zLDAsNC40NS41OCw1LjQyLDEuMTVsLTEuMDcsNS40M2MtLjk3LS41OC0yLjQ2LTEuMTEtNC4zNS0xLjExLTIuODYsMC00LjI0LDEuNjMtNC4yNCwzLjM3LDAsMS45MSwxLjAyLDIuOTIsNC43LDUuMDQsNC42LDIuNTksNi4yMyw1Ljg2LDYuMjMsOS4yNywwLDUuOTEtNC42NSw5LjgtMTEuMzQsOS44LTIuNzYsMC01LjQyLS42OC02LjU5LTEuM2wuOTctNS40MloiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0zNjAuNzksODUuMzRoLTcuODJ2OC43NGg4Ljg0djUuNDhoLTE1LjUzdi0zMi4zOGgxNC45N3Y1LjQ4aC04LjI4djcuNDRoNy44MnY1LjI0WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTM3MS4zNiw2Ny4xOGg2LjY5djIyLjA1YzAsOS4zMS00LjgxLDEwLjcxLTkuNjYsMTAuNzEtMS4zOCwwLTIuNjYtLjE5LTMuMzctLjQ4bC41Ny01LjI4Yy42MS4xOSwxLjMzLjIzLDIuMi4yMywxLjk0LDAsMy41OC0uNzIsMy41OC00Ljl2LTIyLjM0WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQwNC45OSw4Mi43OWMwLDEyLjIxLTQuNiwxNy4xNS0xMS4xNCwxNy4xNS03LjgyLDAtMTAuODgtNy43OC0xMC44OC0xNi42N3MzLjczLTE2LjQ4LDExLjQtMTYuNDhjOC4yOCwwLDEwLjYzLDguNiwxMC42MywxNS45OVpNMzg5LjkxLDgzLjM3YzAsNy4zNCwxLjQ5LDExLjEsNC4yLDExLjEsMi44NiwwLDMuOTMtNC44LDMuOTMtMTEuMzksMC01LjY3LS45Mi0xMC44LTMuOTktMTAuOC0yLjY1LDAtNC4xNCw0LjEzLTQuMTQsMTEuMVoiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik00MjAuNDIsNjcuMThoMTQuOTd2NS40OGgtOC4yOHY4LjMxaDcuNzd2NS4yM2gtNy43N3YxMy4zNmgtNi42OXYtMzIuMzhaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDU1LjA3LDg1LjM0aC03LjgxdjguNzRoOC44NHY1LjQ4aC0xNS41NHYtMzIuMzhoMTQuOTd2NS40OGgtOC4yOHY3LjQ0aDcuODF2NS4yNFoiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik00NjEuNTgsNjcuNjZjMS42OS0uMzksNC4xNC0uNjIsNi43OS0uNjIsNC4zNSwwLDcuMzYuOTYsOS41NiwyLjg4LDIuOTYsMi41LDQuNSw2Ljc3LDQuNSwxMy4wN3MtMS43OSwxMS4yLTQuODEsMTMuNjljLTIuMzUsMi4wNy01LjcyLDMuMTItMTAuNDcsMy4xMi0yLjE0LDAtNC4yNC0uMTktNS41Ny0uMzl2LTMxLjc1Wk00NjguMjcsOTQuNTZjLjM2LjA5LjgyLjA5LDEuMTguMDksMy4yMSwwLDYuMDMtMi45OCw2LjAzLTExLjkxLDAtNi42My0xLjg0LTEwLjY2LTUuODctMTAuNjYtLjQ2LDAtLjkyLDAtMS4zMy4xNHYyMi4zNFoiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01MDIuMTIsODUuMzRoLTcuODJ2OC43NGg4Ljg0djUuNDhoLTE1LjU0di0zMi4zOGgxNC45N3Y1LjQ4aC04LjI4djcuNDRoNy44MnY1LjI0WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTUwOC42Miw2Ny42NmMyLjEtLjM5LDQuNzUtLjYyLDcuMzEtLjYyLDMuNjgsMCw3LC41Myw5LjIsMi40LDIuMSwxLjc4LDIuNzYsMy45NCwyLjc2LDYuNzMsMCwzLjQ2LTEuODQsNi41OC01LjMxLDguMDd2LjA5YzIuMzUuOTIsMy41MywyLjkzLDQuMTksNi40NC42NywzLjYsMS41OSw3LjU5LDIuMiw4Ljc5aC03Yy0uNDYtLjkxLTEuMjItNC4xOC0xLjc0LTcuNzgtLjYxLTMuOTgtMS42OS01LjE0LTMuODgtNS4xNGgtMS4wMnYxMi45MmgtNi43di0zMS44OVpNNTE1LjMyLDgxLjc4aDEuMjNjMi45MSwwLDQuNTUtMi4yMSw0LjU1LTUuMDRzLTEuMTgtNC43MS00LjE0LTQuODFjLS42MSwwLTEuMjguMDUtMS42My4ydjkuNjVaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNTQwLjE2LDkyLjE2bC0xLjUzLDcuNGgtNi40OWw3LjQ2LTMyLjM4aDguMDJsNi43LDMyLjM4aC02LjQ5bC0xLjQ4LTcuNGgtNi4xOFpNNTQ1LjczLDg3LjI2bC0xLjEyLTYuNzdjLS4zNi0xLjk3LS44Mi01LjI0LTEuMTItNy4zNWgtLjE2Yy0uMzYsMi4xNi0uODcsNS40OC0xLjIzLDcuMzVsLTEuMjgsNi43N2g0LjkxWiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTU1OC43OCw2Ny4xOGg2LjY5djI3LjA0aDguNzl2NS4zM2gtMTUuNDh2LTMyLjM4WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTI1MS45OSwxMTUuN2MxLjY4LS4zOSw0LjE0LS42Myw2Ljc5LS42Myw0LjM0LDAsNy4zNi45Niw5LjU2LDIuODgsMi45NiwyLjUsNC41LDYuNzcsNC41LDEzLjA3cy0xLjc5LDExLjE5LTQuOCwxMy42OWMtMi4zNSwyLjA3LTUuNzIsMy4xMi0xMC40NywzLjEyLTIuMTQsMC00LjI0LS4yLTUuNTctLjM5di0zMS43NFpNMjU4LjY4LDE0Mi41OWMuMzYuMS44Mi4xLDEuMTguMSwzLjIyLDAsNi4wMy0yLjk4LDYuMDMtMTEuOTIsMC02LjYyLTEuODQtMTAuNjYtNS44OC0xMC42Ni0uNDYsMC0uOTIsMC0xLjMzLjE0djIyLjM0WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTI5Mi41MywxMzMuMzdoLTcuODJ2OC43NGg4Ljg1djUuNDhoLTE1LjU0di0zMi4zOGgxNC45N3Y1LjQ4aC04LjI4djcuNDRoNy44MnY1LjI0WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTMxNi4wMywxMTUuMjF2MzIuMzhoLTYuNjl2LTMyLjM4aDYuNjlaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzIyLjkxLDE0Ny41OXYtMzIuMzhoNi4xNGw1LjMxLDEyLjY4YzEuMDcsMi41LDIuNzEsNi42OCwzLjY4LDkuNDZoLjFjLS4yLTMuNDEtLjY2LTkuMDMtLjY2LTE0Ljk4di03LjE2aDUuODh2MzIuMzhoLTYuMTNsLTUuMjYtMTIuM2MtMS4xOC0yLjc0LTIuNzEtNi44Ny0zLjUzLTkuNzVoLS4xYy4yMSwzLjI2LjQ3LDguMjYuNDcsMTQuOHY3LjI1aC01Ljg4WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTM1NS4zOSwxNDcuNTlsLTcuNjYtMzIuMzhoNy40MWwyLjQ1LDEzLjk3Yy41NiwzLjUxLDEuMjgsNy40NSwxLjc0LDExLjI0aC4xMWMuNDYtMy44NCwxLjAyLTcuNzMsMS42NC0xMS4zOGwyLjM1LTEzLjg0aDcuMzZsLTcuODcsMzIuMzhoLTcuNTFaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzg5LjU4LDEzMy4zN2gtNy44MnY4Ljc0aDguODR2NS40OGgtMTUuNTN2LTMyLjM4aDE0Ljk3djUuNDhoLTguMjh2Ny40NGg3LjgydjUuMjRaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzk2LjM0LDExNS43YzIuMDktLjM5LDQuNzUtLjYzLDcuMzEtLjYzLDMuNjgsMCw3LC41Myw5LjIsMi40LDIuMDksMS43OCwyLjc2LDMuOTQsMi43Niw2LjcyLDAsMy40Ni0xLjg0LDYuNTgtNS4zMiw4LjA3di4xYzIuMzUuOTEsMy41MywyLjkzLDQuMTksNi40NC42NiwzLjYsMS41OSw3LjU5LDIuMiw4Ljc5aC03Yy0uNDYtLjkyLTEuMjMtNC4xOC0xLjc0LTcuNzgtLjYxLTMuOTgtMS42OC01LjE0LTMuODgtNS4xNGgtMS4wMnYxMi45MmgtNi42OXYtMzEuODlaTTQwMy4wNCwxMjkuODJoMS4yMmMyLjkxLDAsNC41NS0yLjIxLDQuNTUtNS4wNHMtMS4xNy00LjcxLTQuMTQtNC44MWMtLjYyLDAtMS4yOC4wNS0xLjYzLjE5djkuNjVaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDIxLjQzLDE0MS4xNWMxLjM4LjczLDMuNzgsMS4yNSw1LjY3LDEuMjUsMy4xMiwwLDQuNy0xLjUzLDQuNy0zLjY1LDAtMi4zNi0xLjU0LTMuNTEtNC40NS01LjI5LTQuNy0yLjY5LTYuNDktNi4xLTYuNDktOS4wMywwLTUuMTgsMy42OC05LjUxLDEwLjgzLTkuNTEsMi4zLDAsNC40NC41Nyw1LjQxLDEuMTVsLTEuMDcsNS40M2MtLjk3LS41OC0yLjQ1LTEuMTEtNC4zNC0xLjExLTIuODYsMC00LjI0LDEuNjQtNC4yNCwzLjM3LDAsMS45MiwxLjAyLDIuOTMsNC43LDUuMDQsNC42LDIuNiw2LjIzLDUuODYsNi4yMyw5LjI3LDAsNS45MS00LjY1LDkuOC0xMS4zNSw5LjgtMi43NiwwLTUuNDEtLjY4LTYuNTktMS4zbC45Ny01LjQzWiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTQ1MC4xMywxMTUuMjF2MzIuMzhoLTYuNjl2LTMyLjM4aDYuNjlaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDc3LjY5LDEzMC44M2MwLDEyLjE5LTQuNiwxNy4xNS0xMS4xNCwxNy4xNS03LjgyLDAtMTAuODktNy43OS0xMC44OS0xNi42N3MzLjc0LTE2LjQ3LDExLjQtMTYuNDdjOC4yOCwwLDEwLjYzLDguNTksMTAuNjMsMTZaTTQ2Mi42MiwxMzEuNGMwLDcuMzUsMS40OCwxMS4xLDQuMTksMTEuMSwyLjg2LDAsMy45NC00LjgsMy45NC0xMS4zOCwwLTUuNjctLjkyLTEwLjgyLTMuOTktMTAuODItMi42NSwwLTQuMTMsNC4xMy00LjEzLDExLjFaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNNDgzLjIsMTQ3LjU5di0zMi4zOGg2LjEzbDUuMzEsMTIuNjhjMS4wNywyLjUsMi43MSw2LjY4LDMuNjgsOS40NmguMTFjLS4yMS0zLjQxLS42Ny05LjAzLS42Ny0xNC45OHYtNy4xNmg1Ljg4djMyLjM4aC02LjE0bC01LjI2LTEyLjNjLTEuMTgtMi43NC0yLjcxLTYuODctMy41Mi05Ljc1aC0uMTFjLjIsMy4yNi40Niw4LjI2LjQ2LDE0Ljh2Ny4yNWgtNS44OFoiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01MjUuMDgsMTMzLjM3aC03LjgydjguNzRoOC44NHY1LjQ4aC0xNS41M3YtMzIuMzhoMTQuOTd2NS40OGgtOC4yOHY3LjQ0aDcuODJ2NS4yNFoiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik01MzEuMzIsMTQxLjE1YzEuMzguNzMsMy43OCwxLjI1LDUuNjcsMS4yNSwzLjEyLDAsNC43LTEuNTMsNC43LTMuNjUsMC0yLjM2LTEuNTMtMy41MS00LjQ1LTUuMjktNC43LTIuNjktNi40OS02LjEtNi40OS05LjAzLDAtNS4xOCwzLjY4LTkuNTEsMTAuODMtOS41MSwyLjMsMCw0LjQ1LjU3LDUuNDEsMS4xNWwtMS4wNyw1LjQzYy0uOTctLjU4LTIuNDYtMS4xMS00LjM1LTEuMTEtMi44NiwwLTQuMjQsMS42NC00LjI0LDMuMzcsMCwxLjkyLDEuMDIsMi45Myw0LjcsNS4wNCw0LjYsMi42LDYuMjQsNS44Niw2LjI0LDkuMjcsMCw1LjkxLTQuNjUsOS44LTExLjM1LDkuOC0yLjc2LDAtNS40Mi0uNjgtNi41OS0xLjNsLjk3LTUuNDNaIi8+DQogICAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTEyLjY0LDIyLjI5Yy00Ni42MywwLTg0LjQ0LDM3LjgtODQuNDQsODQuNDRzMzcuODEsODQuNDMsODQuNDQsODQuNDMsODQuNDMtMzcuOCw4NC40My04NC40M1MxNTkuMjcsMjIuMjksMTEyLjY0LDIyLjI5Wk04Mi41NywxMzEuMDljMi41MSwwLDUuMzctLjU0LDcuMTktMS4wN2wxLjQ5LDExLjgxYy0yLjE3Ljk3LTYuNCwxLjcyLTExLjU0LDEuNzItMTkuNzYsMC0yOS4xMy0xNS4xNC0yOS4xMy0zNS43NSwwLTI3LjI3LDE2LjExLTM3LjksMzEuMDctMzcuOSw1LjI1LDAsOC45MS45NywxMC4zOSwxLjkzbC0yLjUxLDExLjgxYy0xLjcxLS43NS0zLjY2LTEuNC02Ljk3LTEuNC04LjQ1LDAtMTYuMTEsNi44Ny0xNi4xMSwyNC44czYuOTcsMjQuMDUsMTYuMTEsMjQuMDVaTTEzNy40NCw4Mi43N2gtMTguNXYxOC41N2gxNy4zNnYxMS43aC0xNy4zNnYyOS44NWgtMTQuOTZ2LTcyLjM3aDMzLjQ3djEyLjI0Wk0xNjUuOTcsMTQyLjloLTE0Ljk2di03Mi4zN2gxNC45NnY3Mi4zN1oiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0xNS45MSwxMDcuMzhjMCw0LjM5LTMuNTYsNy45Ni03Ljk2LDcuOTZzLTcuOTYtMy41Ni03Ljk2LTcuOTYsMy41Ni03Ljk1LDcuOTYtNy45NSw3Ljk2LDMuNTYsNy45Niw3Ljk1WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTIyNS4yOCwxMDcuMzhjMCw0LjM5LTMuNTYsNy45Ni03Ljk2LDcuOTZzLTcuOTYtMy41Ni03Ljk2LTcuOTYsMy41Ni03Ljk1LDcuOTYtNy45NSw3Ljk2LDMuNTYsNy45Niw3Ljk1WiIvPg0KICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTcuOTYsMTA2LjA1YzAsNTcuODIsNDYuODcsMTA0LjY5LDEwNC42OSwxMDQuNjlzMTA0LjY4LTQ2Ljg3LDEwNC42OC0xMDQuNjkiLz4NCiAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03Ljk2LDEwNy4zOUM3Ljk2LDQ5LjU3LDU0LjgzLDIuNywxMTIuNjQsMi43czEwNC42OCw0Ni44NywxMDQuNjgsMTA0LjY5Ii8+DQogIDwvZz4NCjwvc3ZnPg==' />
+            src="data:image/svg+xml;base64,PD94bWwgdmVy... (SVG ACÁ, IGUAL QUE EL TUYO) ..." />
         </h1>
       </div>
       <div class="header-text-group" style="margin-left: auto;">
@@ -495,6 +439,7 @@
         <p style="margin: 0; opacity: 0.9;">Sistema alemán de amortización</p>
       </div>
     </div>
+
     <div class="card">
       <div class="help-uso-interno">
         Uso interno UEP. Resultados orientativos, no constituyen oferta ni instrumento oficial.
@@ -540,9 +485,9 @@
           <div class="help">Máx. 6/12 meses. s/ línea.</div>
         </div>
       </div>
+
       <hr style="margin:14px 0; border:none; border-top:1px solid #eee;">
 
-      <!-- BLOQUE TAMAR (API iKiwi, editable a mano) -->
       <div class="grid">
         <div>
           <label for="frecuencia">Frecuencia de amortización</label>
@@ -566,11 +511,13 @@
           <div class="help">Informativa</div>
         </div>
       </div>
+
       <button id="btnSimular">Calcular cuadro de cuotas</button>
       <button id="btnExportar" class="secondary" disabled style="display: none;">Exportar a CSV (Excel)</button>
       <button id="btnImprimir" class="secondary" disabled>Exportar a PDF</button>
       <div id="error" class="error"></div>
     </div>
+
     <div class="card" id="resultCard" style="display:none;">
       <h2>Cuadro de cuotas</h2>
       <div id="resumen" class="summary"></div>
@@ -589,7 +536,7 @@
         nombre: "Competitividad PyME",
         min: 4000000,
         max: 100000000,
-        tramoVariableDesdeMes: 13, // desde mes 13 TAMAR + 2
+        tramoVariableDesdeMes: 13,
         tnaFijaTramo1: 0.36,
         plazoMax: 48,
         graciaMax: 6
@@ -598,7 +545,7 @@
         nombre: "Financiamiento Verde",
         min: 0,
         max: 200000000,
-        tramoVariableDesdeMes: 25, // meses 1–24 tasa fija
+        tramoVariableDesdeMes: 25,
         tnaFijaTramo1: 0.27,
         plazoMax: 60,
         graciaMax: 12
@@ -633,10 +580,12 @@
       });
     }
 
+    // (La dejamos por si en algún momento la querés usar)
     function tasaMensualDesdeTNA(tna) {
       return tna / 12;
     }
 
+    // NUEVA: tasa del período en DECIMAL usando días y TNA (%)
     function obtenerTasaPeriodoDecimal(lineaKey, mesNumero, tamarTnaAplicada, diasPeriodo) {
       const cfg = lineConfigs[lineaKey];
       let tnaPorcentaje;
@@ -664,30 +613,13 @@
       return `${d}/${m}/${y}`;
     }
 
-    function obtenerTasaMensual(lineaKey, mesNumero, tamarTnaAplicada) {
-      const cfg = lineConfigs[lineaKey];
-
-      // Antes del tramo variable → tasa fija propia de la línea
-      if (mesNumero < cfg.tramoVariableDesdeMes) {
-        return tasaMensualDesdeTNA(cfg.tnaFijaTramo1);
-      }
-
-      // Desde el tramo variable → TAMAR + 2 p.p. (ya viene con +2)
-      if (!tamarTnaAplicada || tamarTnaAplicada <= 0) {
-        throw new Error("Para este plazo se requiere cargar la tasa TAMAR + 2 p.p. (TNA).");
-      }
-      const tnaDecimal = tamarTnaAplicada / 100;
-      return tasaMensualDesdeTNA(tnaDecimal);
-    }
-
     let ultimaSimulacion = null;
 
     // ============================
-    // API TAMAR – integración de tu código, sumando +2 p.p.
+    // API TAMAR – integración
     // ============================
     const API_URL = "https://prestamos.ikiwi.net.ar/api/tamars";
 
-    // FORMATEAR FECHA HOY -> YYYY-MM-DD
     function fechaHoy() {
       const hoy = new Date();
       const yyyy = hoy.getFullYear();
@@ -696,7 +628,6 @@
       return `${yyyy}-${mm}-${dd}`;
     }
 
-    // OBTENER TAMAR (hoy o fecha más cercana anterior) + sumar 2 p.p. + fallback
     async function obtenerTAMAR() {
       console.log("Obteniendo TAMAR desde API...");
       const inputTamar = document.getElementById("tamarTna");
@@ -704,53 +635,33 @@
       const divError = document.getElementById("error");
 
       const hoy = fechaHoy();
-      //console.log("Fecha hoy:", hoy);
 
       try {
         const res = await fetch(API_URL);
         const data = await res.json();
 
-        // Ordenar por fecha ASC
         data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        // 1) Buscar TAMAR EXACTA para hoy
         let tamar = data.find(item => item.date === hoy);
 
-        // 2) Si no existe hoy → buscar la fecha más cercana anterior
         if (!tamar) {
-          //console.log("No hay TAMAR para hoy, buscando la fecha más cercana anterior...");
           const anteriores = data.filter(item => item.date < hoy);
-          //console.log("TAMAR anteriores encontradas:", anteriores.length);
           if (anteriores.length > 0) {
-            tamar = anteriores[anteriores.length - 1]; // último = más cercano hacia atrás
-            //console.log("TAMAR seleccionada:", tamar);
-          } else {
-            console.log("No entro a anteriores.length");
+            tamar = anteriores[anteriores.length - 1];
           }
         }
 
         if (tamar) {
           const valorBase = Number(tamar.value);
-          //console.log("Encontró TAMAR valor base:", valorBase);
           if (!valorBase || isNaN(valorBase)) {
             throw new Error("El campo 'value' de TAMAR no es numérico: " + tamar.value);
           }
 
-          // SUMAMOS +2 p.p. (TAMAR + 2)
           const valorConDos = valorBase + 2;
-          //console.log("TAMAR + 2 p.p.:", valorConDos);
-
-          // Cargamos en los inputs del simulador
           inputTamar.value = valorConDos.toFixed(3);
 
-          const partesFecha = tamar.date.split('-'); // ["2025", "11", "20"]
-
-          // Reordenamos a DD/MM/YYYY
+          const partesFecha = tamar.date.split('-');
           const fechaFormateada = `${partesFecha[2]}/${partesFecha[1]}/${partesFecha[0]}`;
-
-          //console.log("Fecha TAMAR (String original):", tamar.date);
-          //console.log("Fecha TAMAR formateada:", fechaFormateada);
-
           inputFecha.value = fechaFormateada;
 
           if (divError) divError.textContent = "";
@@ -774,11 +685,10 @@
     // ============================
     function simular() {
       const lineaKey = document.getElementById("linea").value;
-      //const monto = Number(document.getElementById("monto").value);
       const monto = Number(document.getElementById("monto").value.replace(/\./g, '') || 0);
-      const plazo = parseInt(document.getElementById("plazo").value, 10);     // en meses
-      const gracia = parseInt(document.getElementById("gracia").value, 10);   // en meses
-      const frecuencia = document.getElementById("frecuencia").value;         // mensual/trimestral/semestral
+      const plazo = parseInt(document.getElementById("plazo").value, 10);
+      const gracia = parseInt(document.getElementById("gracia").value, 10);
+      const frecuencia = document.getElementById("frecuencia").value;
       const tamarTna = document.getElementById("tamarTna").value
         ? Number(document.getElementById("tamarTna").value)
         : null;
@@ -824,7 +734,6 @@
         return;
       }
 
-      // Validación crítica para asegurar que la gracia esté incluida en el plazo
       if (gracia >= plazo) {
         divError.textContent = "El período de gracia debe ser menor al plazo total del crédito.";
         return;
@@ -836,7 +745,7 @@
       }
 
       const mesesAmortizacion = plazo - gracia;
-      let factorFrecuencia; // en meses
+      let factorFrecuencia;
       if (frecuencia === "mensual") {
         factorFrecuencia = 1;
       } else if (frecuencia === "trimestral") {
@@ -849,20 +758,18 @@
         divError.textContent = "El plazo menos la gracia debe ser mayor que cero.";
         return;
       }
-      if (plazo % factorFrecuencia !== 0) { // Validamos que el plazo total sea múltiplo de la frecuencia
+      if (plazo % factorFrecuencia !== 0) {
         divError.textContent =
           "El plazo total (" + plazo + " meses) debe ser múltiplo de la frecuencia (" +
           factorFrecuencia + " meses).";
         return;
       }
-      // Validación adicional: La gracia también debe ser múltiplo de la frecuencia para un cálculo trimestral/semestral limpio
       if (frecuencia !== "mensual" && gracia % factorFrecuencia !== 0) {
         divError.textContent =
           "Para la frecuencia " + frecuencia + ", el período de gracia (" + gracia +
           " meses) debe ser múltiplo de la frecuencia (" + factorFrecuencia + " meses).";
         return;
       }
-
 
       let saldo = monto;
       let totalIntereses = 0;
@@ -882,51 +789,10 @@
 
       try {
         if (frecuencia === "mensual") {
-          // ---- CASO MENSUAL: un período por mes (Lógica original correcta) ----
+          // Un período = 30 días
+          const diasPeriodo = 30;
           const amortizacionConstante = monto / mesesAmortizacion;
 
-          /*
-          for (let mes = 1; mes <= plazo; mes++) {
-            const tasaMensual = obtenerTasaMensual(lineaKey, mes, tamarTna);
-            const tasaPeriodo = tasaMensual; // 1 mes
-
-            const interes = saldo * tasaPeriodo;
-            let amort = 0;
-
-            if (mes > gracia) {
-              amort = amortizacionConstante;
-              if (mes === plazo) {
-                amort = saldo; // ajuste final
-              }
-            }
-
-            const cuota = interes + amort;
-            saldo -= amort;
-
-            totalIntereses += interes;
-            totalAmortizacion += amort;
-            totalCuotas += cuota;
-
-            const tasaPct = tasaPeriodo * 100;
-
-            html += "<tr>" +
-              `<td data-label="Período">${mes}</td>` +  // IMPORTANTE: En el otro loop usa ${n}
-              `<td data-label="Tasa (%)">${tasaPct.toFixed(4)}</td>` +
-              `<td data-label="Interés">${formatearMonto(interes)}</td>` +
-              `<td data-label="Amortización">${formatearMonto(amort)}</td>` +
-              `<td data-label="Cuota">${formatearMonto(cuota)}</td>` +
-              `<td data-label="Saldo">${formatearMonto(Math.max(saldo, 0))}</td>` +
-              "</tr>";
-
-            rows.push({
-              periodo: mes,
-              tasaPeriodoPct: tasaPct,
-              interes,
-              amort,
-              cuota,
-              saldo: Math.max(saldo, 0)
-            });
-          }*/
           for (let mes = 1; mes <= plazo; mes++) {
             const tasaPeriodoDecimal = obtenerTasaPeriodoDecimal(lineaKey, mes, tamarTna, diasPeriodo);
             const interes = saldo * tasaPeriodoDecimal;
@@ -968,40 +834,25 @@
           }
 
         } else {
-          // ---- CASO TRIMESTRAL / SEMESTRAL (LÓGICA MODIFICADA) ----
-
-          // 1. Cuotas totales (amortización + gracia)
+          // Trimestral o semestral: mismo criterio de días (30 * factorFrecuencia)
           const numCuotasTotales = plazo / factorFrecuencia;
-          // 2. Cuotas solo de amortización
           const numCuotasAmortizacion = mesesAmortizacion / factorFrecuencia;
-          // 3. Períodos de gracia (donde A=0)
           const numPeriodosGracia = gracia / factorFrecuencia;
 
-          const amortizacionConstante = monto / numCuotasAmortizacion; // La amortización constante
+          const amortizacionConstante = monto / numCuotasAmortizacion;
 
-          /*
-          for (let n = 1; n <= numCuotasTotales; n++) 
-          {
-
-            // El mes del cronograma en el que se paga esta cuota
+          for (let n = 1; n <= numCuotasTotales; n++) {
             const mesDelPago = n * factorFrecuencia;
+            const diasPeriodo = 30 * factorFrecuencia;
 
-            // Obtenemos la TASA MENSUAL según el mes de pago (para la lógica de 27% vs. TAMAR+2)
-            const tasaMensual = obtenerTasaMensual(lineaKey, mesDelPago, tamarTna);
+            const tasaPeriodoDecimal = obtenerTasaPeriodoDecimal(lineaKey, mesDelPago, tamarTna, diasPeriodo);
+            const interes = saldo * tasaPeriodoDecimal;
+            let amort = 0;
 
-            // Tasa efectiva del período: (1 + i_mensual)^(n meses) - 1
-            const tasaPeriodo = Math.pow(1 + tasaMensual, factorFrecuencia) - 1;
-
-            const interes = saldo * tasaPeriodo;
-            let amort = 0; // Inicialmente 0
-
-            // Aplicamos la amortización constante SÓLO si el período n es mayor a los períodos de gracia
             if (n > numPeriodosGracia) {
               amort = amortizacionConstante;
-
-              // Ajuste final por redondeos: la última cuota debe amortizar el saldo restante
               if (n === numCuotasTotales) {
-                amort = saldo;
+                amort = saldo; // ajuste final
               }
             }
 
@@ -1012,10 +863,10 @@
             totalAmortizacion += amort;
             totalCuotas += cuota;
 
-            const tasaPct = tasaPeriodo * 100;
+            const tasaPct = tasaPeriodoDecimal * 100;
 
             html += "<tr>" +
-              `<td data-label="Período">${n}</td>` +  // IMPORTANTE: En el otro loop usa ${n}
+              `<td data-label="Período">${n}</td>` +
               `<td data-label="Tasa (%)">${tasaPct.toFixed(4)}</td>` +
               `<td data-label="Interés">${formatearMonto(interes)}</td>` +
               `<td data-label="Amortización">${formatearMonto(amort)}</td>` +
@@ -1031,45 +882,6 @@
               cuota,
               saldo: Math.max(saldo, 0)
             });
-          }*/
-          for (let mes = 1; mes <= plazo; mes++) {
-            const tasaPeriodoDecimal = obtenerTasaPeriodoDecimal(lineaKey, mes, tamarTna, diasPeriodo);
-            const interes = saldo * tasaPeriodoDecimal;
-            let amort = 0;
-
-            if (mes > gracia) {
-              amort = amortizacionConstante;
-              if (mes === plazo) {
-                amort = saldo; // ajuste final para que sume exactamente el capital
-              }
-            }
-
-            const cuota = interes + amort;
-            saldo -= amort;
-
-            totalIntereses += interes;
-            totalAmortizacion += amort;
-            totalCuotas += cuota;
-
-            const tasaPct = tasaPeriodoDecimal * 100;
-
-            html += "<tr>" +
-              `<td data-label="Período">${mes}</td>` +
-              `<td data-label="Tasa (%)">${tasaPct.toFixed(4)}</td>` +
-              `<td data-label="Interés">${formatearMonto(interes)}</td>` +
-              `<td data-label="Amortización">${formatearMonto(amort)}</td>` +
-              `<td data-label="Cuota">${formatearMonto(cuota)}</td>` +
-              `<td data-label="Saldo">${formatearMonto(Math.max(saldo, 0))}</td>` +
-              "</tr>";
-
-            rows.push({
-              periodo: mes,
-              tasaPeriodoPct: tasaPct,
-              interes,
-              amort,
-              cuota,
-              saldo: Math.max(saldo, 0)
-            });
           }
         }
       } catch (e) {
@@ -1078,7 +890,7 @@
       }
 
       html += "</tbody><tfoot><tr>" +
-        "<td colspan=\"2\" data-label=\"Totales\">Totales</td>" + // Quitamos colspan visualmente en css mobile
+        "<td colspan=\"2\" data-label=\"Totales\">Totales</td>" +
         `<td data-label="Total Interés">${formatearMonto(totalIntereses)}</td>` +
         `<td data-label="Total Amort.">${formatearMonto(totalAmortizacion)}</td>` +
         `<td data-label="Total Cuota">${formatearMonto(totalCuotas)}</td>` +
@@ -1144,15 +956,13 @@
       };
     }
 
-
     // ============================
-    // Generar HTML Estilizado para Exportación
+    // Generar HTML para Excel
     // ============================
     function generarHTMLCompleto(simulacion) {
       const sim = simulacion;
       const today = new Date().toLocaleDateString("es-AR");
 
-      // Generar la tabla de datos
       let tablaHtml = "<table><thead><tr>" +
         "<th>Período</th><th>Tasa período (%)</th><th>Interés</th><th>Amortización</th><th>Cuota</th><th>Saldo</th>" +
         "</tr></thead><tbody>";
@@ -1175,7 +985,6 @@
         `<td style="text-align:right; font-weight:bold;">${formatearMonto(sim.totalCuotas)}</td>` +
         "<td></td></tr></tfoot></table>";
 
-      // Estructura completa del archivo Excel (HTML)
       const html = `
     <html>
     <head>
@@ -1218,21 +1027,15 @@
       return html;
     }
 
-    // ============================
-    // Exportar XLS (Reemplaza a exportarCSV)
-    // ============================
     function exportarXLS() {
       if (!ultimaSimulacion) return;
 
-      // Genera el contenido HTML completo con la tabla y el resumen
       const htmlContent = generarHTMLCompleto(ultimaSimulacion);
 
-      // Crea un Blob con tipo MIME para que Excel lo interprete como hoja de cálculo
       const blob = new Blob(["\ufeff", htmlContent], { type: "application/vnd.ms-excel;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      // Usa la extensión .xls
       a.download = `Cuadro_Cuotas_${ultimaSimulacion.linea.replace(/\s+/g, "")}_CFI.xls`;
 
       document.body.appendChild(a);
@@ -1241,9 +1044,6 @@
       URL.revokeObjectURL(url);
     }
 
-    // ============================
-    // Exportar a PDF (Librería jsPDF) - AGREGADA
-    // ============================
     function exportarPDF() {
       if (!ultimaSimulacion) return;
 
@@ -1262,83 +1062,58 @@
       const margin = 15;
       let y = margin;
 
-      // 🔥 TU LOGO EN BASE64 (reemplaza con tu imagen correcta y más pequeña)
-      const logoBase64 = 'data:image/jpeg;base64,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';
-
-      const logoWidth = 70;  // mm (ajusta según prefieras)
-      const logoHeight = logoWidth / 6.25; // 11.2 mm (mantiene proporción)
+      const logoBase64 = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...'; // tu logo
+      const logoWidth = 70;
+      const logoHeight = logoWidth / 6.25;
       const pageWidth = doc.internal.pageSize.getWidth();
 
-      // 🔥 COLOR AZUL OSCURO CFI (del fondo)
       const azulOscuroCFI_R = 15;
       const azulOscuroCFI_G = 25;
       const azulOscuroCFI_B = 45;
 
-      // -------------------------------------------------------------
-      // --- HEADER: LOGO (IZQUIERDA) Y FECHA (DERECHA) ---
-      // -------------------------------------------------------------
-
-      // LOGO A LA IZQUIERDA
       try {
         doc.addImage(logoBase64, 'PNG', margin, y, logoWidth, logoHeight);
       } catch (e) {
         console.warn("No se pudo cargar el logo en PDF:", e);
       }
 
-      // FECHA A LA DERECHA (alineada al top)
       doc.setFontSize(10);
-      doc.setTextColor(100, 100, 100); // Gris oscuro
+      doc.setTextColor(100, 100, 100);
       doc.text(`Fecha: ${new Date().toLocaleDateString("es-AR")}`, pageWidth - margin, y + 5, { align: 'right' });
 
-      // Bajamos después del logo
       y = y + logoHeight + 15;
 
-      // -------------------------------------------------------------
-      // --- TÍTULO DEL DOCUMENTO ---
-      // -------------------------------------------------------------
       doc.setFontSize(18);
       doc.setTextColor(azulOscuroCFI_R, azulOscuroCFI_G, azulOscuroCFI_B);
       doc.setFont(undefined, 'bold');
       doc.text(`Simulación de Cuotas CFI - ${sim.linea}`, margin, y);
       y += 10;
 
-      // Línea separadora
       doc.setDrawColor(azulOscuroCFI_R, azulOscuroCFI_G, azulOscuroCFI_B);
       doc.setLineWidth(0.8);
       doc.line(margin, y, pageWidth - margin, y);
       y += 8;
 
-      // -------------------------------------------------------------
-      // --- DATOS DEL CRÉDITO ---
-      // -------------------------------------------------------------
       doc.setFontSize(10);
       doc.setTextColor(0, 0, 0);
       doc.setFont(undefined, 'normal');
 
-      // Primera línea
       doc.text(`Monto: $${formatearMonto(sim.monto)} | Plazo Total: ${sim.plazo} meses | Gracia: ${sim.gracia} meses`, margin, y);
       y += 6;
-
-      // Segunda línea
       doc.text(`Frecuencia: ${sim.frecuencia} | Sistema: Alemán | Tasa Variable (TAMAR+2 TNA): ${sim.tamarTna ? sim.tamarTna.toFixed(3) + '%' : 'N/A'}`, margin, y);
       y += 10;
 
-      // Disclaimer
       doc.setFontSize(8);
       doc.setFont(undefined, 'bold');
       doc.setTextColor(0, 0, 0);
       const disclaimerText = "La presente simulación tiene carácter meramente estimativo e informativo. Los valores proyectados no son definitivos ni vinculantes y no constituyen, bajo ningún concepto, la cuota final del crédito. El CFI no asume obligación alguna de otorgar un crédito con estas condiciones ni garantiza que las cuotas reales coincidan con los cálculos aquí exhibidos. Las condiciones financieras finales —incluyendo monto, tasa, plazo, sistema de amortización y valor de las cuotas— quedarán sujetas exclusivamente a la evaluación, aprobación y liquidación formal del crédito por parte del CFI.";
       const splitDisclaimer = doc.splitTextToSize(disclaimerText, pageWidth - (2 * margin));
       doc.text(splitDisclaimer, margin, y);
-      y += (splitDisclaimer.length * 4) + 8; // Ajusta espacio según líneas
+      y += (splitDisclaimer.length * 4) + 8;
 
-      // Restablecer font para la tabla
       doc.setFontSize(10);
       doc.setFont(undefined, 'normal');
 
-      // -------------------------------------------------------------
-      // --- TABLA DE AMORTIZACIÓN ---
-      // -------------------------------------------------------------
       const head = [['Período', 'Tasa (%)', 'Interés', 'Amortización', 'Cuota', 'Saldo']];
       const body = sim.rows.map(r => [
         r.periodo.toString(),
@@ -1348,12 +1123,10 @@
         formatearMonto(r.cuota),
         formatearMonto(Math.max(r.saldo, 0))
       ]);
-      const foot = [['Totales', '', formatearMonto(sim.totalIntereses), formatearMonto(sim.totalAmortizacion), formatearMonto(sim.totalCuotas), '']];
 
       doc.autoTable({
         head: head,
         body: body,
-        //foot: foot,
         startY: y,
         margin: { top: margin, bottom: margin, left: margin, right: margin },
         theme: 'striped',
@@ -1362,12 +1135,6 @@
           halign: 'center',
           fontSize: 9,
           fontStyle: 'bold'
-        },
-        footStyles: {
-          fillColor: [224, 224, 230],
-          textColor: [0, 0, 0],
-          fontStyle: 'bold',
-          fontSize: 9
         },
         styles: {
           fontSize: 8,
@@ -1382,24 +1149,11 @@
           4: { halign: 'right' },
           5: { halign: 'right' },
         },
-        didParseCell: function (data) {
-          if (data.section === 'foot') {
-            if (data.column.index === 0) {
-              data.cell.styles.halign = 'left';
-              data.cell.styles.fontStyle = 'bold';
-            } else if (data.column.index >= 2) {
-              data.cell.styles.halign = 'right';
-              data.cell.styles.fontStyle = 'bold';
-            }
-          }
-        },
         didDrawPage: function (data) {
-
           const pageCount = doc.internal.getNumberOfPages();
           const currentPage = doc.internal.getCurrentPageInfo().pageNumber;
 
           if (currentPage === pageCount) {
-            // Dibujar totales manualmente
             const finalY = data.cursor.y;
             const tableWidth = pageWidth - (2 * margin);
 
@@ -1414,7 +1168,7 @@
             doc.text(formatearMonto(sim.totalAmortizacion), margin + 105, finalY + 5.5, { align: 'right' });
             doc.text(formatearMonto(sim.totalCuotas), margin + 140, finalY + 5.5, { align: 'right' });
           }
-          // Pie de página con número
+
           doc.setFontSize(8);
           doc.setTextColor(128, 128, 128);
           doc.text(
@@ -1426,15 +1180,9 @@
         }
       });
 
-      // --- GUARDAR PDF ---
       doc.save(`Simulacion_CFI_${sim.linea.replace(/\s+/g, '_')}.pdf`);
     }
 
-
-
-    // ============================
-    // Exportar CSV (Mantener para referencia o quitar si se usa XLS)
-    // ============================
     function exportarCSV() {
       if (!ultimaSimulacion) return;
 
@@ -1486,31 +1234,21 @@
       URL.revokeObjectURL(url);
     }
 
-    // ============================
-    // Event Listeners (MODIFICADO)
-    // ============================
     document.getElementById("btnSimular").addEventListener("click", simular);
-    // Cambiamos el botón Exportar a XLS
     document.getElementById("btnExportar").addEventListener("click", exportarXLS);
-    // Cambiamos el botón Imprimir/PDF a PDF
     document.getElementById("btnImprimir").addEventListener("click", exportarPDF);
 
-    // Al cargar la página, intentamos traer TAMAR desde la API (con +2 p.p. y fallback)
     window.addEventListener("DOMContentLoaded", obtenerTAMAR);
 
-    // Formatear el campo de monto con separadores de miles
     document.getElementById("monto").addEventListener("input", function (e) {
-      // Removemos todo excepto números
       let value = e.target.value.replace(/\D/g, '');
-
-      // Formateamos con puntos como separador de miles
       if (value) {
         e.target.value = parseInt(value).toLocaleString('es-AR');
       } else {
         e.target.value = '';
       }
     });
-    // Al hacer blur, aseguramos el formato
+
     document.getElementById("monto").addEventListener("blur", function (e) {
       let value = e.target.value.replace(/\D/g, '');
       if (value) {
