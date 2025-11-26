@@ -692,10 +692,19 @@
         data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         // 1) Buscar TAMAR EXACTA para hoy
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 758ef09 (Lo mismo que el remote)
         let tamar = data.find(item => item.date === hoy);
 
         // 2) Si no existe hoy → buscar la fecha más cercana anterior
         if (!tamar) {
+<<<<<<< HEAD
+=======
+          console.log("Buscando TAMAR para fecha item.date:", item.date);
+          console.log("Buscando TAMAR para fecha hoy:", hoy);
+>>>>>>> 758ef09 (Lo mismo que el remote)
           const anteriores = data.filter(item => item.date < hoy);
           if (anteriores.length > 0) {
             tamar = anteriores[anteriores.length - 1]; // último = más cercano hacia atrás
