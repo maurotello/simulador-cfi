@@ -637,6 +637,26 @@
       return tna / 12;
     }
 
+    function obtenerTasaPeriodoDecimal(lineaKey, mesNumero, tamarTnaAplicada, diasPeriodo) {
+      const cfg = lineConfigs[lineaKey];
+      let tnaPorcentaje;
+
+      if (mesNumero < cfg.tramoVariableDesdeMes) {
+        // Tramo fijo de la línea (por ej. 36% para Competitividad)
+        tnaPorcentaje = cfg.tnaFijaTramo1 * 100;
+      } else {
+        // Tramo TAMAR + 2 p.p.
+        if (!tamarTnaAplicada || tamarTnaAplicada <= 0) {
+          throw new Error("Para este plazo se requiere cargar la tasa TAMAR + 2 p.p. (TNA).");
+        }
+        tnaPorcentaje = tamarTnaAplicada;
+      }
+
+      // Fórmula pedida: tasaPeriodoDecimal = TNA(%) * dias / 36500
+      const tasaPeriodoDecimal = (tnaPorcentaje * diasPeriodo) / 36500;
+      return tasaPeriodoDecimal;
+    }
+
     function formatearFechaDDMMYYYY(date) {
       const d = String(date.getDate()).padStart(2, "0");
       const m = String(date.getMonth() + 1).padStart(2, "0");
