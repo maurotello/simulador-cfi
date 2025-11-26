@@ -678,11 +678,13 @@
 
     // OBTENER TAMAR (hoy o fecha más cercana anterior) + sumar 2 p.p. + fallback
     async function obtenerTAMAR() {
+      console.log("ENTRANDO A OBTENER TAMAR");
       const inputTamar = document.getElementById("tamarTna");
       const inputFecha = document.getElementById("tamarFecha");
       const divError = document.getElementById("error");
 
       const hoy = fechaHoy();
+      console.log("HOY ES:", hoy);
 
       try {
         const res = await fetch(API_URL);
@@ -697,7 +699,7 @@
         
 >>>>>>> 758ef09 (Lo mismo que el remote)
         let tamar = data.find(item => item.date === hoy);
-
+        console.log("TAMAR encontrada para hoy:", tamar);
         // 2) Si no existe hoy → buscar la fecha más cercana anterior
         if (!tamar) {
 <<<<<<< HEAD
@@ -710,7 +712,7 @@
             tamar = anteriores[anteriores.length - 1]; // último = más cercano hacia atrás
           }
         }
-        
+
 
         if (tamar) {
           const valorBase = Number(tamar.value);
