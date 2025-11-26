@@ -701,10 +701,10 @@
           console.log("No hay TAMAR para hoy, buscando la fecha más cercana anterior...");
           const anteriores = data.filter(item => item.date < hoy);
           console.log("TAMAR anteriores encontradas:", anteriores.length);
-          if (anteriores.length > 0) { 
+          if (anteriores.length > 0) {
             tamar = anteriores[anteriores.length - 1]; // último = más cercano hacia atrás
             console.log("TAMAR seleccionada:", tamar);
-          }else{
+          } else {
             console.log("No entro a anteriores.length");
           }
         }
@@ -723,14 +723,15 @@
           // Cargamos en los inputs del simulador
           inputTamar.value = valorConDos.toFixed(3);
 
-          const fechaObj = new Date(tamar.date); // YYYY-MM-DD
-          console.log("Fecha TAMAR encontrada:", fechaObj);
-          if (!isNaN(fechaObj.getTime())) {
-            inputFecha.value = formatearFechaDDMMYYYY(fechaObj);
-            console.log("Fecha TAMAR formateada:", inputFecha.value);
-          } else {
-            inputFecha.value = "";
-          }
+          const partesFecha = tamar.date.split('-'); // ["2025", "11", "20"]
+
+          // Reordenamos a DD/MM/YYYY
+          const fechaFormateada = `${partesFecha[2]}/${partesFecha[1]}/${partesFecha[0]}`;
+
+          console.log("Fecha TAMAR (String original):", tamar.date);
+          console.log("Fecha TAMAR formateada:", fechaFormateada);
+
+          inputFecha.value = fechaFormateada;
 
           if (divError) divError.textContent = "";
         } else {
@@ -744,14 +745,6 @@
           divError.textContent =
             "No se pudo obtener la TAMAR desde el servicio. " +
             "Podés cargarla a mano. (Detalle: " + error + ")";
-        }
-
-        // Fallback: valor conocido (ya TAMAR + 2) para no frenar al usuario
-        if (!inputTamar.value) {
-          inputTamar.value = "36.620";
-        }
-        if (!inputFecha.value) {
-          inputFecha.value = "12/11/2025";
         }
       }
     }
